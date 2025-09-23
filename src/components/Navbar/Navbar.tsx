@@ -30,8 +30,10 @@ export const Navbar = () => {
   useEffect(() => {
     if (isOpen === true) {
       document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
     } else {
       document.body.style.overflow = 'auto';
+      document.body.style.position = '';
     }
   }, [isOpen]);
 
