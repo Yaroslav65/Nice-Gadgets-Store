@@ -27,11 +27,11 @@ export const Aside: React.FC<Props> = ({ closeMenu, totalItems, isOpen }) => {
     }
 
     closeMenu();
-  }, [location.pathname, closeMenu]);
+  }, [location.pathname, closeMenu])
 
   return (
     <aside
-      className={`${isOpen ? style.asideOpen : style.asideMenu} ${isOpen ? 'asideIsOpen' : ''}`}
+      className={isOpen ? style.asideOpen : style.asideMenu}
     >
       <div className={style.menuWrapper}>
         <nav className={style.menuNav} onClick={closeMenu}>

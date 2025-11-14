@@ -23,10 +23,6 @@
 }
 
 .asideIsOpen {
-  pointer-events: auto;
-}
-
-body:has(.asideIsOpen) {
   overflow: hidden;
 }
 

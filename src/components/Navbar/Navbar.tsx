@@ -5,7 +5,7 @@ import { Icons } from '../../shared/ui/Icons/Icons';
 import { IconId } from '../../types/icons';
 import { useCart } from '../../store/CartContext';
 import { useFavourites } from '../../store/FavouritesContext';
-import { useCallback, useState } from 'react';
+import { useCallback, useLayoutEffect, useState } from 'react';
 import { Aside } from '../Aside';
 import { Counter } from '../../shared/ui/Counter';
 import { IconMenu } from '../../shared/ui/IconMenu';
@@ -30,6 +30,10 @@ export const Navbar = () => {
   const closeMenu = useCallback(() => {
     setIsOpen(false);
   }, []);
+
+  useLayoutEffect(() => {
+    document.body.classList.toggle('asideIsOpen', isOpen);
+  }, [isOpen]);
 
   return (
     <header className={style.header}>
