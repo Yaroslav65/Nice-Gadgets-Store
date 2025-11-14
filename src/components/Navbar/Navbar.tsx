@@ -5,7 +5,7 @@ import { Icons } from '../../shared/ui/Icons/Icons';
 import { IconId } from '../../types/icons';
 import { useCart } from '../../store/CartContext';
 import { useFavourites } from '../../store/FavouritesContext';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { Aside } from '../Aside';
 import { Counter } from '../../shared/ui/Counter';
 import { IconMenu } from '../../shared/ui/IconMenu';
@@ -26,16 +26,6 @@ export const Navbar = () => {
   const toggleMenu = () => {
     setIsOpen(open => !open);
   };
-
-  useEffect(() => {
-    if (isOpen === true) {
-      document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-    } else {
-      document.body.style.overflow = 'auto';
-      document.body.style.position = '';
-    }
-  }, [isOpen]);
 
   const closeMenu = useCallback(() => {
     setIsOpen(false);

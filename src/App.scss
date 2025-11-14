@@ -22,6 +22,14 @@
   font-weight: 600;
 }
 
+.asideIsOpen {
+  pointer-events: auto;
+}
+
+body:has(.asideIsOpen) {
+  overflow: hidden;
+}
+
 h1 {
   font-family: Mont-Bold, sans-serif;
   font-weight: 700;
