@@ -75,7 +75,10 @@
   }
 
   display: none;
-  transition: all $transition-duration ease;
+  transition:
+   background-color,
+   border-color,
+   $transition-duration ease;
 
   &:hover {
     background-color: var(--btn-bg-hover);

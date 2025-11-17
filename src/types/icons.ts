@@ -10,6 +10,7 @@ export enum IconId {
   Menu = 'menu',
   Sun = 'sun',
   Moon = 'moon',
+  Search = 'search',
 }
 
 export enum Directions {

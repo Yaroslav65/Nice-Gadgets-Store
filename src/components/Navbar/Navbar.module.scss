@@ -101,6 +101,64 @@
   text-decoration: none;
 }
 
+// .searchField {
+//   display: flex;
+//   align-items: center;
+//   position: relative;
+// }
+
+// .searchButton {
+//   cursor: pointer;
+//   position: absolute;
+//   border: none;
+//   background: none;
+//   display: flex;
+//   align-items: center;
+//   left: 5px;
+//   height: 30px;
+// }
+
+// .clearButton {
+//   cursor: pointer;
+//   position: absolute;
+//   border: none;
+//   background: none;
+//   display: flex;
+//   align-items: center;
+//   right: 10px;
+// }
+
+// .field {
+//   width: 500px;
+//   min-width: 60px;
+//   height: 30px;
+//   background-color: var(--slider-btn-bg);
+//   border: 1px solid;
+//   border-color: var(--btn-border);
+//   border-radius: 20px;
+//   padding-inline: 25px;
+//   color: var(--text-color);
+//   outline: transparent;
+//   box-shadow: 0;
+//   transition: 
+//     box-shadow,
+//     background-color,
+//     border-color,
+//     0.7s ease-in-out;
+
+//   &:hover {
+//     box-shadow: 0 0 10px 4px #51cbee;
+//     background-color: var(--btn-bg-hover);
+//     border-color: var(--btn-border-hover);
+//   }
+
+//   &:focus {
+//     box-shadow: 0 0 10px 4px #51cbee;
+//     background-color: var(--btn-bg-hover);
+//     border-color: var(--btn-border-hover);
+//   }
+// }
+
 .buttonsRight {
   display: none;
 

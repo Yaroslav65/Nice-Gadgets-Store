@@ -10,6 +10,7 @@ import { Aside } from '../Aside';
 import { Counter } from '../../shared/ui/Counter';
 import { IconMenu } from '../../shared/ui/IconMenu';
 import { getNavLinkClass } from '../../utils/helpers/getNavLinkClass';
+import { SearchBar } from '../../shared/ui/SearchBar';
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -102,6 +103,8 @@ export const Navbar = () => {
             </li>
           </ul>
         </div>
+
+        <SearchBar />
 
         <div className={style.rightBlock}>
           <Toggle />
