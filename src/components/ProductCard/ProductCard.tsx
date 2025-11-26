@@ -9,11 +9,11 @@ import { useCart } from '../../store/CartContext';
 import { ProdCard } from '../../types/Product';
 import { useFavourites } from '../../store/FavouritesContext';
 
-type ProductCardProps = {
+type Props = {
   product?: ProdCard;
 };
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+export const ProductCard: React.FC<Props> = ({ product }) => {
   const cart = useCart();
   const fav = useFavourites();
   const [searchParams] = useSearchParams();
@@ -46,7 +46,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         }}
         className={style.imgLink}
       >
-        <img src={img} alt={name} className={style.cardImg} />
+        {/* <img src={img} alt={name} className={style.cardImg} /> */}
+        <img src={img[0]} className={style.cardImg} />
+        {img[1] && <img src={img[1]} className={style.secondImg} />}
       </Link>
 
       <Link

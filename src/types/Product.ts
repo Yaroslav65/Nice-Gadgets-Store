@@ -12,7 +12,7 @@ export interface Product {
   color: string;
   ram: string;
   year: number;
-  image: string;
+  image: string | string[];
 }
 
 export interface DescriptionBlock {
@@ -59,7 +59,7 @@ export type ProdCard = {
   year?: number;
   price: number;
   fullPrice: number;
-  img: string;
+  img: string | string[];
   specs: {
     name: string;
     value: string;

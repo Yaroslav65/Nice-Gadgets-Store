@@ -26,6 +26,9 @@
 }
 
 .field {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   width: 100px;
   min-width: 60px;
   height: 30px;

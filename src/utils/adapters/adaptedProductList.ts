@@ -6,7 +6,9 @@ export const adaptedProductList = (product: Product): ProdCard => {
     name: product.name,
     price: product.price,
     fullPrice: product.fullPrice,
-    img: product.image,
+    img: Array.isArray(product.image)
+      ? product.image
+      : [product.image],
     year: product.year,
     specs: [
       { name: 'Screen', value: product.screen },

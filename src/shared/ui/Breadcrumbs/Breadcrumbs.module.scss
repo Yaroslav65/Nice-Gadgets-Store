@@ -35,7 +35,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  transition: all $transition-duration ease;
+  transition: color $transition-duration ease;
 }
 
 .iconText:hover {
