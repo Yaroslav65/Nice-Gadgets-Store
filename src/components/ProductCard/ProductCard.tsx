@@ -46,7 +46,6 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
         }}
         className={style.imgLink}
       >
-        {/* <img src={img} alt={name} className={style.cardImg} /> */}
         <img src={img[0]} className={style.cardImg} />
         {img[1] && <img src={img[1]} className={style.secondImg} />}
       </Link>

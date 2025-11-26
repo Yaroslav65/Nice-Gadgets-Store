@@ -20,6 +20,7 @@
 
 .imgLink {
   position: relative;
+  overflow: hidden;
   justify-content: center;
   display: flex;
   max-width: 100%;
@@ -39,12 +40,14 @@
 
 .cardImg {
   @extend %card-img;
+
   opacity: 1;
   pointer-events: none;
 }
 
 .secondImg {
   @extend %card-img;
+
   position: absolute;
   top: 0;
   left: 0;

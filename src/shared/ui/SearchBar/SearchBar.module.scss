@@ -1,6 +1,7 @@
 .searchField {
   display: flex;
   align-items: center;
+  // flex-direction: column;
   position: relative;
 }
 
@@ -76,4 +77,16 @@
   &:focus::placeholder {
     color: #a9a9a9;
   }
+}
+
+.productsField {
+  position: absolute;
+  top: 100%;
+  width: 500px;
+  height: 200px;
+  background-color: var(--slider-btn-bg);
+  border: 1px solid;
+  border-color: var(--btn-border);
+  border-radius: 20px;
+  padding-inline: 25px;
 }

@@ -43,6 +43,10 @@ export const SearchBar: React.FC = () => {
         }}
         ref={inputRef}
       />
+
+      {query && (
+        <div className={style.productsField}></div>
+      )}
     </div>
   );
 };
