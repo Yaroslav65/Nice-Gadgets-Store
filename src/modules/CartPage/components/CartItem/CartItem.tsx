@@ -42,7 +42,7 @@ export const CartItem: React.FC<CartItemProps> = ({ item }) => {
         </Link>
 
         <div className={style.itemImg}>
-          <img src={item.img} alt="item image" className={style.mainImg} />
+          <img src={item.img[0]} alt="item image" className={style.mainImg} />
         </div>
 
         <p className={style.itemName}>{item.name}</p>
