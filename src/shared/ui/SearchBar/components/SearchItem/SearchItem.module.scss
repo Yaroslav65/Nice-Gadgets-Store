@@ -1,0 +1,27 @@
+.itemContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.imgWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.itemImg {
+  align-items: center;
+  display: flex;
+  width: 80px;
+  height: 80px;
+}
+
+.mainImg {
+  width: 66px;
+  height: 66px;
+  object-fit: contain;
+}

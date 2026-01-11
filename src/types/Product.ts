@@ -20,6 +20,14 @@ export interface DescriptionBlock {
   text: string[];
 }
 
+export interface SearchIt {
+  image: string | string[];
+  name: string;
+  price: number;
+  itemId: string;
+  category: string;
+}
+
 export interface ProductDetails {
   id: string;
   category: string;
