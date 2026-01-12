@@ -52,7 +52,7 @@
   height: 32px;
 }
 
-%buttonBack {
+%button-back {
   align-items: center;
   gap: 16px;
   justify-content: center;
@@ -76,7 +76,8 @@
 }
 
 .floating {
-  @extend %buttonBack;
+  @extend %button-back;
+
   position: fixed;
   bottom: 10px;
   right: 10px;
@@ -90,7 +91,8 @@
 }
 
 .footerPosition {
-  @extend %buttonBack;
+  @extend %button-back;
+
   opacity: 1;
   pointer-events: auto;
 }

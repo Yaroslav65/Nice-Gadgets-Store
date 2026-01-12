@@ -14,7 +14,9 @@ export const Footer = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!footerRef.current) return;
+      if (!footerRef.current) {
+        return;
+      }
 
       const footerTop = footerRef.current.getBoundingClientRect().top;
       const windowHeight = window.innerHeight;
@@ -28,6 +30,7 @@ export const Footer = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -35,7 +38,11 @@ export const Footer = () => {
     <footer ref={footerRef} className={style.footer}>
       <div className={style.footerContent}>
         <NavLink className={style.link__item} to="/">
-          <img src="./img/Logo.png" alt="logo-nice-gadgets" className={style.footerLogo} />
+          <img
+            src="./img/Logo.png"
+            alt="logo-nice-gadgets"
+            className={style.footerLogo}
+          />
         </NavLink>
 
         <div className={style.footerList}>
