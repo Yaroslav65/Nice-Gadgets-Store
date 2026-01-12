@@ -12,7 +12,7 @@ export enum IconId {
   Moon = 'moon',
   Search = 'search',
   Star = 'star',
-  StarFilled = 'star-filled'
+  StarFilled = 'star-filled',
 }
 
 export enum Directions {

@@ -26,3 +26,6 @@ export const addToFavourites = <T extends ItemWithId>(
 
   return newFav;
 };
+
+export const getImageSrc = (img: string | string[]): string =>
+  Array.isArray(img) ? img[0] : img;

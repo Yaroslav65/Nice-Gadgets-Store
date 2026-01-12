@@ -9,12 +9,12 @@ type Props = {
 };
 
 export const SearchItem: React.FC<Props> = ({ product, setQuery }) => {
+  const [searchParams] = useSearchParams();
+  const { image, name, price, itemId, category } = product;
+
   if (!product) {
     return null;
   }
-
-  const [searchParams] = useSearchParams();
-  const { image, name, price, itemId, category } = product;
 
   return (
     <Link

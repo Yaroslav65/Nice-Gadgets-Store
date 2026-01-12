@@ -9,6 +9,7 @@ import {
   DispatchContext,
   useCart,
 } from '../../../../store/CartContext';
+import { getImageSrc } from '../../../../utils/helpers/productHelpers';
 
 type CartItemProps = {
   item: CartIt;
@@ -42,7 +43,7 @@ export const CartItem: React.FC<CartItemProps> = ({ item }) => {
         </Link>
 
         <div className={style.itemImg}>
-          <img src={item.img[0]} alt="item image" className={style.mainImg} />
+          <img src={getImageSrc(item.img)} alt="item image" className={style.mainImg} />
         </div>
 
         <p className={style.itemName}>{item.name}</p>

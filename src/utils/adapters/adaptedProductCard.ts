@@ -8,7 +8,7 @@ export const adaptedProductCard = (
     name: productDetails.name,
     price: productDetails.priceDiscount || productDetails.priceRegular,
     fullPrice: productDetails.priceRegular,
-    img: productDetails.images[0],
+    img: productDetails.images,
     specs: [
       { name: 'Screen', value: productDetails.screen },
       { name: 'Capacity', value: productDetails.capacity },

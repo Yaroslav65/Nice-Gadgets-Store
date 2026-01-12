@@ -1,5 +1,5 @@
-import { IconId } from "../../../types/icons";
-import { Icons } from "../Icons";
+import { IconId } from '../../../types/icons';
+import { Icons } from '../Icons';
 import style from './Stars.module.scss';
 
 export const Stars = () => {

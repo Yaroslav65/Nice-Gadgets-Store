@@ -8,6 +8,7 @@ import { ProductContext } from '../../store/ProductContext';
 import { useCart } from '../../store/CartContext';
 import { ProdCard } from '../../types/Product';
 import { useFavourites } from '../../store/FavouritesContext';
+import { getImageSrc } from '../../utils/helpers/productHelpers';
 
 type Props = {
   product?: ProdCard;
@@ -46,7 +47,7 @@ export const ProductCard: React.FC<Props> = ({ product }) => {
         }}
         className={style.imgLink}
       >
-        <img src={img[0]} className={style.cardImg} />
+        <img src={getImageSrc(img)} className={style.cardImg} />
         {img[1] && <img src={img[1]} className={style.secondImg} />}
       </Link>
 
