@@ -8,13 +8,17 @@
     "start": "node src/server.js",
     "prisma:generate": "PRISMA_ENGINES_CACHE_DIR=./.prisma-cache prisma generate",
     "prisma:migrate": "PRISMA_ENGINES_CACHE_DIR=./.prisma-cache prisma migrate dev",
-    "prisma:studio": "PRISMA_ENGINES_CACHE_DIR=./.prisma-cache prisma studio"
+    "prisma:studio": "PRISMA_ENGINES_CACHE_DIR=./.prisma-cache prisma studio",
+    "prisma:seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
     "@prisma/client": "^7.4.1",
     "express": "^5.2.1"
   },
   "devDependencies": {
-    "prisma": "^7.4.1"
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.3.0",
+    "prisma": "^7.4.1",
+    "tsx": "^4.21.0"
   }
 }
