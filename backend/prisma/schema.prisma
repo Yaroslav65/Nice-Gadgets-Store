@@ -12,3 +12,23 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model Category {
+  id              String    @id @default(cuid())
+  name            String    
+  slug            String    @unique    
+  createdAt       DateTime  @default(now())
+
+  products Product[]
+}
+
+model Product {
+  id               String    @id @default(cuid())
+  name             String
+  slug             String    @unique
+  price            Int
+  stock            Int
+  categoryId       String
+  category         Category  @relation(fields: [categoryId], references: [id])
+  createdAt        DateTime  @default(now())
+}
