@@ -1,0 +1,17 @@
+{
+  "name": "nice-gadgets-store-backend",
+  "private": true,
+  "version": "0.1.0",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "node src/server.js",
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^7.4.1",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "prisma": "^7.4.1"
+  }
+}
