@@ -14,4 +14,9 @@ reports
 cypress/screenshots
 cypress/videos
 
-/generated/prisma
+/frontend/dist
+/backend/generated
+/backend/generated/prisma
+/backend/.prisma-cache
+.env
+backend/.env

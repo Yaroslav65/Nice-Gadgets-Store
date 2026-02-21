@@ -5,7 +5,10 @@
   "main": "src/server.js",
   "scripts": {
     "dev": "node src/server.js",
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "prisma:generate": "PRISMA_ENGINES_CACHE_DIR=./.prisma-cache prisma generate",
+    "prisma:migrate": "PRISMA_ENGINES_CACHE_DIR=./.prisma-cache prisma migrate dev",
+    "prisma:studio": "PRISMA_ENGINES_CACHE_DIR=./.prisma-cache prisma studio"
   },
   "dependencies": {
     "@prisma/client": "^7.4.1",
