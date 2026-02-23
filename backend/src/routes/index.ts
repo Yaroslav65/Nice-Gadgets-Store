@@ -1,8 +1,12 @@
 import { Router } from 'express';
-import authRoutes from './auth';
+import authRouter from './auth';
+import categoriesRouter from './categories.route';
+import productsRouter from './products.route';
 
-const rootRouter: Router = Router();
+const router: Router = Router();
 
-rootRouter.use('/auth', authRoutes);
+router.use('/auth', authRouter);
+router.use('/categories', categoriesRouter);
+router.use('/products', productsRouter);
 
-export default rootRouter;
+export default router;

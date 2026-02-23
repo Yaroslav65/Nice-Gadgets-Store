@@ -5,8 +5,7 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -16,7 +15,7 @@ datasource db {
 model Category {
   id              String    @id @default(cuid())
   name            String    
-  slug            String    @unique    
+  slug            String    @unique
   createdAt       DateTime  @default(now())
 
   products Product[]
@@ -26,7 +25,15 @@ model Product {
   id               String    @id @default(cuid())
   name             String
   slug             String    @unique
+  itemId           String    @unique
+  fullPrice        Int
   price            Int
+  screen           String
+  capacity         String
+  color            String
+  ram              String
+  year             Int
+  images           Json 
   stock            Int
   categoryId       String
   category         Category  @relation(fields: [categoryId], references: [id])
