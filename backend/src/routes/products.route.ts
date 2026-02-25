@@ -27,14 +27,13 @@ router.get('/:itemId', async (req, res) => {
     });
 
     if (!details) {
-      return res.status(404).send('Product not found')
+      return res.status(404).json({ message: 'Product not found' });
     }
 
     return res.status(200).json(details);
   } catch (error) {
-    console.log('GET /api/products/:itemId', error);
-    return res.status(404).json({ message: 'Product not found' })
+    console.error('GET /api/products/:itemId failed:', error);
+    return res.status(500).json({ message: 'Internal server error' });
   }
-})
-
+});
 export default router;

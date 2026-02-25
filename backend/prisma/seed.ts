@@ -87,8 +87,6 @@ const allDetails: ProductDetailsSeed[] = detailFiles.flatMap((file) => {
 });
 
 const detailsById = new Map(allDetails.map(d => [d.id, d]));
-
-
 const productsFileCandidates = [
   path.resolve(process.cwd(), 'frontend/public/api/products_updated.json'),
   path.resolve(process.cwd(), '../frontend/public/api/products_updated.json'),
