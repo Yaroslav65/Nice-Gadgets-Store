@@ -11,8 +11,8 @@ export const ProductList: React.FC<ProductListProps> = React.memo(
   ({ products }) => {
     return (
       <div className={style.listContainer}>
-        {products.map((product, index) => (
-          <ProductCard key={index} product={product} />
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
         ))}
       </div>
     );

@@ -2,6 +2,10 @@ import 'dotenv/config';
 import fs from 'node:fs';
 import path from 'node:path';
 import prisma from '../src/db/prisma';
+import { Prisma } from '@prisma/client';
+
+const toJson = (value: unknown): Prisma.InputJsonValue =>
+  value as Prisma.InputJsonValue;
 
 type ProductSeed = {
   name: string,
@@ -39,6 +43,52 @@ interface ProductJson {
   image: string[],
 }
 
+interface DescriptionBlock {
+  title: string;
+  text: string[];
+}
+
+interface ProductDetailsSeed {
+  id: string;
+  category: string;
+  namespaceId: string;
+  name: string;
+  capacityAvailable: string[];
+  capacity: string;
+  priceRegular: number;
+  priceDiscount: number;
+  colorsAvailable: string[];
+  color: string;
+  images: string[];
+  description: DescriptionBlock[];
+  screen: string;
+  resolution: string;
+  processor: string;
+  ram: string;
+  camera?: string;
+  zoom?: string;
+  cell: string[];
+}
+
+const detailFiles = ['phones', 'tablets', 'accessories'];
+const detailsFileCandidates = (fileName: string) => [
+  path.resolve(process.cwd(), `frontend/public/api/${fileName}.json`),
+  path.resolve(process.cwd(), `../frontend/public/api/${fileName}.json`),
+];
+
+const allDetails: ProductDetailsSeed[] = detailFiles.flatMap((file) => {
+  const filePath = detailsFileCandidates(file).find(fs.existsSync);
+
+  if (!filePath) {
+    throw new Error('Category is not found')
+  }
+
+  return JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+});
+
+const detailsById = new Map(allDetails.map(d => [d.id, d]));
+
+
 const productsFileCandidates = [
   path.resolve(process.cwd(), 'frontend/public/api/products_updated.json'),
   path.resolve(process.cwd(), '../frontend/public/api/products_updated.json'),
@@ -47,7 +97,7 @@ const productsFilePath = productsFileCandidates.find((candidate) =>
   fs.existsSync(candidate),
 );
 if (!productsFilePath) {
-  throw new Error('products_updated.json not found in frontend/public/api');
+  throw new Error('Products are not found');
 }
 const productsData = fs.readFileSync(productsFilePath, 'utf-8');
 const jsonProducts: ProductJson[] = JSON.parse(productsData);
@@ -64,7 +114,7 @@ const products: ProductSeed[] = jsonProducts.map((prod) => ({
   year: prod.year,
   images: prod.image,
   stock: 100,
-  categorySlug: prod.category
+  categorySlug: prod.category,
 }));
 
 const categories: CategorySeed[] = [
@@ -129,6 +179,57 @@ async function main() {
         images: product.images,
         stock: product.stock,
         categoryId: category.id,
+      },
+    })
+
+    const detail = detailsById.get(product.itemId);
+
+    if (!detail) {
+      throw new Error('Details not found');
+    }
+
+    await prisma.productDetails.upsert({
+      where: { itemId: product.itemId },
+      create: {
+        itemId: product.itemId,
+        category: detail.category,
+        namespaceId: detail.namespaceId,
+        name: detail.name,
+        capacityAvailable: detail.capacityAvailable,
+        capacity: detail.capacity,
+        priceRegular: detail.priceRegular,
+        priceDiscount: detail.priceDiscount,
+        colorsAvailable: detail.colorsAvailable,
+        color: detail.color,
+        images: detail.images,
+        description: toJson(detail.description),
+        screen: detail.screen,
+        resolution: detail.resolution,
+        processor: detail.processor,
+        ram: detail.ram,
+        camera: detail.camera ?? null,
+        zoom: detail.zoom ?? null,
+        cell: detail.cell,
+      },
+      update: {
+        category: detail.category,
+        namespaceId: detail.namespaceId,
+        name: detail.name,
+        capacityAvailable: detail.capacityAvailable,
+        capacity: detail.capacity,
+        priceRegular: detail.priceRegular,
+        priceDiscount: detail.priceDiscount,
+        colorsAvailable: detail.colorsAvailable,
+        color: detail.color,
+        images: detail.images,
+        description: toJson(detail.description),
+        screen: detail.screen,
+        resolution: detail.resolution,
+        processor: detail.processor,
+        ram: detail.ram,
+        camera: detail.camera ?? null,
+        zoom: detail.zoom ?? null,
+        cell: detail.cell,
       },
     })
   }

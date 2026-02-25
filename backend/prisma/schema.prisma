@@ -6,6 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  // output   = "../generated/prisma"
 }
 
 datasource db {
@@ -14,11 +15,36 @@ datasource db {
 
 model Category {
   id              String    @id @default(cuid())
-  name            String    
+  name            String  
   slug            String    @unique
   createdAt       DateTime  @default(now())
 
   products Product[]
+}
+
+model ProductDetails {
+  id               String   @id @default(cuid())
+  category         String
+  namespaceId      String
+  name             String
+  capacityAvailable Json
+  capacity         String
+  priceRegular     Int
+  priceDiscount    Int
+  colorsAvailable  String[]
+  color            String
+  images           Json
+  description      Json
+  screen           String
+  resolution       String
+  processor        String
+  ram              String
+  camera           String?
+  zoom             String?
+  cell             Json
+  itemId           String @unique
+
+  product          Product @relation(fields: [itemId], references: [itemId], onDelete: Cascade)
 }
 
 model Product {
@@ -34,6 +60,7 @@ model Product {
   ram              String
   year             Int
   images           Json 
+  details          ProductDetails?
   stock            Int
   categoryId       String
   category         Category  @relation(fields: [categoryId], references: [id])

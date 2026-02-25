@@ -4,6 +4,7 @@ import { Spec } from '../shared/components/ProductSpecs';
 import { useParams } from 'react-router-dom';
 import { ProductDetailsType } from '../types/ProductDetailsType';
 import { ProductContext } from './ProductContext';
+import { getProductDetails } from '../api';
 
 export const ProductDetailsContext =
   React.createContext<ProductDetailsType | null>(null);
@@ -21,7 +22,7 @@ export const ProductDetailsProvider: React.FC<Props> = ({ children }) => {
   const [hasError, setHasError] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
 
-  const { products, isDataReady } = useContext(ProductContext);
+  const { isDataReady } = useContext(ProductContext);
   const { productId } = useParams();
 
   const validId = productId ? productId.toString() : '';
@@ -31,49 +32,27 @@ export const ProductDetailsProvider: React.FC<Props> = ({ children }) => {
       return;
     }
 
+    setHasError(false);
     setIsLoadingId(true);
+    setProductDetails(undefined);
+    setProductSpec([]);
 
-    const product = products.find(p => p.itemId === validId);
-
-    if (!product) {
-      setHasError(true);
-      setIsLoadingId(false);
-      setIsInitialized(true);
-
-      return;
-    }
-
-    const category = product.category;
-
-    fetch(`api/${category}.json`)
-      .then(result => result.json())
-      .then((data: ProductDetails[]) => {
-        const detailedProduct = data.find(p => p.id === validId);
-
-        if (data) {
-          setProductDetails(detailedProduct);
-        } else {
-          setHasError(true);
-        }
-
-        if (!detailedProduct) {
-          setHasError(true);
-
-          return;
-        }
+    getProductDetails(validId)
+      .then((data: ProductDetails) => {
+        setProductDetails(data);
 
         const specsObj: ProdSpec = {
-          screen: detailedProduct.screen,
-          resolution: detailedProduct.resolution,
-          processor: detailedProduct.processor,
-          ram: detailedProduct.ram,
-          capacity: detailedProduct.capacity,
-          cell: detailedProduct.cell,
+          screen: data.screen,
+          resolution: data.resolution,
+          processor: data.processor,
+          ram: data.ram,
+          capacity: data.capacity,
+          cell: data.cell,
         };
 
-        if (detailedProduct.camera && detailedProduct.zoom) {
-          specsObj.camera = detailedProduct.camera;
-          specsObj.zoom = detailedProduct.zoom;
+        if (data.camera && data.zoom) {
+          specsObj.camera = data.camera;
+          specsObj.zoom = data.zoom;
         }
 
         const arr: Spec[] = Object.entries(specsObj).map(([key, value]) => ({
@@ -106,12 +85,14 @@ export const ProductDetailsProvider: React.FC<Props> = ({ children }) => {
       })
       .catch(() => {
         setHasError(true);
+        setProductDetails(undefined);
+        setProductSpec([]);
       })
       .finally(() => {
         setIsLoadingId(false);
         setIsInitialized(true);
       });
-  }, [validId, products, isDataReady]);
+  }, [validId, isDataReady]);
 
   const value = useMemo(
     () => ({
