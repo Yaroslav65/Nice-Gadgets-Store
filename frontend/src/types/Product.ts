@@ -1,7 +1,7 @@
 export interface Product {
   specs: { name: string; value: string }[];
   img: string;
-  id: number;
+  id: number | string;
   category: string;
   itemId: string;
   name: string;
@@ -29,6 +29,7 @@ export interface SearchIt {
 }
 
 export interface ProductDetails {
+  json(): any;
   id: string;
   category: string;
   namespaceId: string;
