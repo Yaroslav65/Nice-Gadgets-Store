@@ -1,19 +1,8 @@
 import { Product, ProductDetails } from './types/Product';
 
 // eslint-disable-next-line operator-linebreak
-// const API_URL = 'api/products_updated.json';
-
-// function wait(delay: number) {
-//   return new Promise(resolve => setTimeout(resolve, delay));
-// }
-
-// export async function getProduct(): Promise<Product[]> {
-//   return wait(500)
-//     .then(() => fetch(API_URL))
-//     .then(response => response.json());
-// }
 const API_URL = 'http://127.0.0.1:5055/api/products';
-
+const API_CATEGORIES = 'http://127.0.0.1:5055/api/categories';
 type ApiProduct = {
   id: string;
   itemId: string;
@@ -29,6 +18,23 @@ type ApiProduct = {
   category: { slug: string };
 };
 
+type Category = {
+  id: string;
+  name: string;
+  slug: string;
+};
+
+export async function getCategories(): Promise<Category[]> {
+  const response = await fetch(API_CATEGORIES);
+
+  if (!response.ok) {
+    throw new Error('Failed to load categories');
+  }
+
+  const data: Category[] = await response.json();
+
+  return data;
+}
 export async function getProductDetails(itemId: string): Promise<ProductDetails> {
   const response = await fetch(`${API_URL}/${itemId}`)
 
@@ -71,4 +77,3 @@ export async function getProduct(): Promise<Product[]> {
     ],
   }));
 }
-
