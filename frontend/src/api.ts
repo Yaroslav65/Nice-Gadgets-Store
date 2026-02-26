@@ -3,7 +3,6 @@ import { Product, ProductDetails } from './types/Product';
 // eslint-disable-next-line operator-linebreak
 const API_URL = 'http://127.0.0.1:5055/api/products';
 const API_CATEGORIES = 'http://127.0.0.1:5055/api/categories';
-
 type ApiProduct = {
   id: string;
   itemId: string;
@@ -23,7 +22,7 @@ type Category = {
   id: string;
   name: string;
   slug: string;
-}
+};
 
 export async function getCategories(): Promise<Category[]> {
   const response = await fetch(API_CATEGORIES);
@@ -36,7 +35,6 @@ export async function getCategories(): Promise<Category[]> {
 
   return data;
 }
-
 export async function getProductDetails(itemId: string): Promise<ProductDetails> {
   const response = await fetch(`${API_URL}/${itemId}`)
 
@@ -79,4 +77,3 @@ export async function getProduct(): Promise<Product[]> {
     ],
   }));
 }
-
