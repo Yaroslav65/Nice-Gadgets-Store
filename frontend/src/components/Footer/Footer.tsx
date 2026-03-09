@@ -4,6 +4,7 @@ import { Directions, IconId } from '../../types/icons';
 import { Button } from '../../shared/ui/Button';
 import { useEffect, useRef, useState } from 'react';
 import { ContactsBlock } from './components/ContactsBlock';
+import { RightsBlock } from './components/RightsBlock';
 
 export const Footer = () => {
   const [isFloating, setIsFloating] = useState(false);
@@ -57,9 +58,7 @@ export const Footer = () => {
 
           <ContactsBlock />
 
-          <NavLink className={style.link__item} to="/">
-            Rights
-          </NavLink>
+          <RightsBlock />
         </div>
 
         <div

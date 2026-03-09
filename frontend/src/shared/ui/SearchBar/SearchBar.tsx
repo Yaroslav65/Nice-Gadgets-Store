@@ -1,4 +1,4 @@
-import { useContext, useMemo, useRef, useState } from 'react';
+import { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { IconId } from '../../../types/icons';
 import { Icons } from '../Icons';
 import style from './SearchBar.module.scss';
@@ -6,12 +6,24 @@ import { ProductContext } from '../../../store/ProductContext';
 import { SearchItem } from './components/SearchItem';
 
 export const SearchBar: React.FC = () => {
-  const [query, setQuery] = useState('');
+  const [inputValue, setInputValue] = useState('');
+  const [debouncedQuery, setDebouncedQuery] = useState('');
   const [closeField, setCloseField] = useState(false);
 
   const { products } = useContext(ProductContext);
 
   const inputRef = useRef<HTMLInputElement>(null);
+  const hasQuery = inputValue.trim().length > 0;
+
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => {
+      setDebouncedQuery(inputValue.trim().toLowerCase());
+    }, 250);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [inputValue]);
 
   const checkInputFocus = () => {
     if (inputRef.current !== null) {
@@ -20,13 +32,14 @@ export const SearchBar: React.FC = () => {
   };
 
   const clearField = () => {
-    setQuery('');
+    setInputValue('');
+    setDebouncedQuery('');
     checkInputFocus();
   };
 
   const handleQueryChange = (newValue: string) => {
     setCloseField(false);
-    setQuery(newValue);
+    setInputValue(newValue);
   };
 
   const handleBlur = () => {
@@ -40,28 +53,32 @@ export const SearchBar: React.FC = () => {
   };
 
   const filteredProducts = useMemo(() => {
+    if (!debouncedQuery) {
+      return [];
+    }
+
     return products.filter(product =>
-      product.name.toLowerCase().includes(query),
+      product.name.toLowerCase().includes(debouncedQuery),
     );
-  }, [query, products]);
+  }, [debouncedQuery, products]);
 
   const displayedProducts = filteredProducts.slice(0, 8);
 
   return (
     <div className={style.searchField}>
-      <button className={style.searchButton}>
+      <button type='button' className={style.searchButton}>
         <Icons id={IconId.Search} className={style.searchIcon} />
       </button>
-      {query && (
-        <button className={style.clearButton} onClick={clearField}>
+      {hasQuery && (
+        <button type='button' className={style.clearButton} onClick={clearField}>
           <Icons id={IconId.Close} />
         </button>
       )}
       <input
-        type="text"
-        placeholder="Start searching"
+        type='text'
+        placeholder='Start searching'
         className={style.field}
-        value={query}
+        value={inputValue}
         onChange={event => {
           handleQueryChange(event.target.value);
         }}
@@ -70,13 +87,13 @@ export const SearchBar: React.FC = () => {
         ref={inputRef}
       />
 
-      {query && closeField !== true && (
+      {debouncedQuery && closeField !== true && (
         <div className={style.productsField}>
           {displayedProducts.map(product => (
             <SearchItem
               product={product}
               key={product.id}
-              setQuery={setQuery}
+              setQuery={setInputValue}
             />
           ))}
         </div>
