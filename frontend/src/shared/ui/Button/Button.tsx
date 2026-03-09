@@ -3,7 +3,7 @@ import { Icons } from '../../ui/Icons/Icons';
 import classNames from 'classnames';
 import { ButtonProps } from '../../../types/buttons';
 
-export const Button: React.FC<ButtonProps> = ({
+export const Button = ({
   iconId,
   directions,
   onClick,
@@ -12,7 +12,7 @@ export const Button: React.FC<ButtonProps> = ({
   className,
   disabled,
   title,
-}) => {
+}: ButtonProps) => {
   return (
     <button
       onClick={onClick}
