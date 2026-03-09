@@ -1,10 +1,15 @@
+import { lazy, Suspense, useState } from 'react';
 import style from './CartPage.module.scss';
 import { CartItem } from './components/CartItem';
 import { ButtonBack } from '../../shared/ui/ButtonBack';
 import { useCart } from '../../store/CartContext';
-import { useState } from 'react';
-import { CartModal } from './components/CartModal';
 import { Button } from '../../shared/ui/Button';
+
+const CartModal = lazy(() =>
+  import('./components/CartModal').then(module => ({
+    default: module.CartModal,
+  })),
+);
 
 export const CartPage = () => {
   const {
@@ -46,11 +51,15 @@ export const CartPage = () => {
                 </p>
               </div>
               <div className={style.buttonContainer}>
-                <Button type="large" title="Checkout" onClick={checkoutCart} />
+                <Button type='large' title='Checkout' onClick={checkoutCart} />
               </div>
             </article>
 
-            {isCheck && <CartModal closeModal={closeModal} />}
+            {isCheck && (
+              <Suspense fallback={null}>
+                <CartModal closeModal={closeModal} />
+              </Suspense>
+            )}
           </>
         </section>
       ) : (
