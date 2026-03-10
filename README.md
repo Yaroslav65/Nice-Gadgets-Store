@@ -20,6 +20,7 @@ Nice Gadgets Store is a full-stack web application for browsing and managing a m
 | ⚡ | Search optimization | Debounced input (`250ms`) in `SearchBar` |
 | 🚀 | Route performance | Page-level lazy loading (`React.lazy + Suspense`) |
 | 🧩 | Cart optimization | Lazy-loaded checkout modal |
+| 🗂️ | Data layer | Local data caching (temporary) |
 
 ## Tech Stack
 
@@ -86,6 +87,8 @@ DATABASE_URL="postgresql://postgres:postgres@localhost:5432/nice_gadgets?schema=
 PORT=5055
 ```
 
+> `DATABASE_URL` and `PORT` values above are examples for local development only.
+> Do not use hardcoded credentials in production. Use environment secrets and SSL-enabled database connections.
 ### 4. Prepare database
 
 ```bash
