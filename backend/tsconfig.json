@@ -5,5 +5,5 @@
     "moduleResolution": "NodeNext",
     "esModuleInterop": true
   },
-  "include": ["prisma.config.ts", "prisma/**/*.ts"]
+  "include": ["prisma.config.ts", "prisma/**/*.ts", "src/**/*.ts", "api/**/*.ts"]
 }

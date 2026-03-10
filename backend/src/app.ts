@@ -7,7 +7,11 @@ const PORT = process.env.PORT || 5000;
 
 app.use(
   cors({
-    origin: [/^http:\/\/localhost:\d+$/, /^http:\/\/127\.0\.0\.1:\d+$/],
+    origin: [
+      /^http:\/\/localhost:\d+$/,
+      /^http:\/\/127\.0\.0\.1:\d+$/,
+      /^https:\/\/yaroslav65\.github\.io$/,
+    ],
   }),
 );
 
