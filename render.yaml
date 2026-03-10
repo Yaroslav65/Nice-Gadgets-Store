@@ -15,4 +15,3 @@ services:
 databases:
   - name: nice-gadgets-db
     databaseName: nice_gadgets
-    user: postgres
