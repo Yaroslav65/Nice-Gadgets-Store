@@ -8,6 +8,7 @@
     "start": "tsx src/server.ts",
     "prisma:generate": "PRISMA_ENGINES_CACHE_DIR=./.prisma-cache prisma generate",
     "prisma:migrate": "PRISMA_ENGINES_CACHE_DIR=./.prisma-cache prisma migrate dev",
+    "prisma:deploy": "PRISMA_ENGINES_CACHE_DIR=./.prisma-cache prisma migrate deploy",
     "prisma:studio": "PRISMA_ENGINES_CACHE_DIR=./.prisma-cache prisma studio",
     "prisma:seed": "tsx prisma/seed.ts"
   },
