@@ -14,4 +14,4 @@ services:
 
 databases:
   - name: nice-gadgets-db
-    databaseName: nice_gadgets
+    plan: free
