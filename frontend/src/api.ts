@@ -8,11 +8,12 @@ const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL ?? 'http://127.0.0.1:505
 const API_URL = `${API_BASE_URL}/api/products`;
 const API_CATEGORIES = `${API_BASE_URL}/api/categories`;
 
-const LOCAL_PRODUCTS_URL = '/api/products_updated.json';
+const BASE_URL = import.meta.env.BASE_URL ?? '/';
+const LOCAL_PRODUCTS_URL = `${BASE_URL}api/products_updated.json`;
 const LOCAL_DETAILS_URLS = [
-  '/api/phones.json',
-  '/api/tablets.json',
-  '/api/accessories.json',
+  `${BASE_URL}api/phones.json`,
+  `${BASE_URL}api/tablets.json`,
+  `${BASE_URL}api/accessories.json`,
 ];
 
 let localProductsCache: LocalProduct[] | null = null;
